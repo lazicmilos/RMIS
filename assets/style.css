@@ -322,6 +322,79 @@ main { flex: 1; padding-top: 32px; padding-bottom: 48px; }
 .form-error { min-height: 1.2em; margin: 12px 0 0 !important; color: var(--danger) !important; }
 .dialog-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; }
 
+/* ---------- Preview ---------- */
+
+.preview {
+  width: min(1040px, calc(100% - 32px));
+  height: calc(100dvh - 32px);
+  max-width: none;
+  max-height: none;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  overflow: hidden;
+}
+
+.preview[open] { display: flex; flex-direction: column; }
+.preview::backdrop { background: rgb(0 0 0 / 60%); }
+
+.preview-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px 10px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.preview-title {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-size: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.preview-actions { display: flex; gap: 8px; }
+
+.preview-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  background: var(--surface-2);
+}
+
+.pdf-pages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+}
+
+.pdf-pages canvas {
+  max-width: 100%;
+  height: auto;
+  background: #fff;
+  box-shadow: 0 2px 12px rgb(0 0 0 / 18%);
+}
+
+.office-frame { display: block; width: 100%; height: 100%; border: 0; background: #fff; }
+
+.text-preview {
+  margin: 0;
+  padding: 20px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font: 0.9rem/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.preview-message { margin: 0; padding: 48px 20px; color: var(--muted); text-align: center; }
+.preview-message.error { color: var(--danger); }
+
 /* ---------- Mobile ---------- */
 
 @media (max-width: 640px) {
@@ -330,4 +403,10 @@ main { flex: 1; padding-top: 32px; padding-bottom: 48px; }
   #admin-button { margin-left: auto; }
   .file { flex-wrap: wrap; }
   .file-actions { width: 100%; padding-left: 62px; }
+  .preview { width: 100%; height: 100dvh; border: 0; border-radius: 0; }
+  .preview-bar { flex-wrap: wrap; padding: 10px 12px; }
+  .preview-title { flex-basis: 100%; }
+  .preview-actions { width: 100%; }
+  .preview-actions .btn { flex: 1; }
+  .pdf-pages { padding: 8px; gap: 8px; }
 }

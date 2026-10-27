@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src https://api.github.com; script-src 'self'; style-src 'self'; img-src 'self'; object-src 'none'; base-uri 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://api.github.com; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; worker-src 'self'; frame-src https://view.officeapps.live.com; object-src 'none'; base-uri 'self'">
   <meta name="description" content="RMIS — vežbe, teorija i seminarski radovi.">
   <title>RMIS</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -32,6 +32,18 @@
       RMIS · fajlovi se čuvaju u <a href="https://github.com/lazicmilos/RMIS" target="_blank" rel="noopener">GitHub repozitorijumu</a>
     </div>
   </footer>
+
+  <dialog id="preview-dialog" class="preview" aria-labelledby="preview-title">
+    <div class="preview-bar">
+      <h2 id="preview-title" class="preview-title"></h2>
+      <div class="preview-actions">
+        <a id="preview-open" class="btn btn-ghost" target="_blank" rel="noopener">Novi tab</a>
+        <a id="preview-download" class="btn btn-ghost">Preuzmi</a>
+        <button id="preview-close" class="btn btn-primary" type="button" aria-label="Zatvori pregled">Zatvori</button>
+      </div>
+    </div>
+    <div id="preview-body" class="preview-body"></div>
+  </dialog>
 
   <dialog id="login-dialog" class="dialog" aria-labelledby="login-title">
     <form id="login-form">

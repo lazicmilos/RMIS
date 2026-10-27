@@ -1,5 +1,6 @@
 import { CONFIG } from './config.js';
 import { GitHubClient, encodePath } from './github.js';
+import { canPreview, openPreview } from './preview.js';
 
 const TOKEN_KEY = 'rmis.token';
 const STORAGE_KINDS = ['sessionStorage', 'localStorage'];
@@ -264,6 +265,15 @@ function homeView() {
 function fileItem(section, file, onChange) {
   const ext = extension(file.name);
   const href = encodePath(file.path);
+  const title = displayName(file.name);
+  const previewable = canPreview(file.name);
+  const preview = () => openPreview(file, title);
+  // Plain clicks open the preview; ctrl/cmd/middle-click keep the native "open in new tab".
+  const onNameClick = (e) => {
+    if (!previewable || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    preview();
+  };
   return h(
     'li',
     { class: 'file' },
@@ -271,12 +281,13 @@ function fileItem(section, file, onChange) {
     h(
       'div',
       { class: 'file-info' },
-      h('a', { class: 'file-name', href, target: '_blank', rel: 'noopener' }, displayName(file.name)),
+      h('a', { class: 'file-name', href, target: '_blank', rel: 'noopener', onClick: onNameClick }, title),
       h('span', { class: 'file-meta' }, formatSize(file.size)),
     ),
     h(
       'div',
       { class: 'file-actions' },
+      previewable && h('button', { class: 'btn btn-primary', type: 'button', onClick: preview }, 'Pregled'),
       h('a', { class: 'btn btn-ghost', href, download: file.name }, 'Preuzmi'),
       state.isAdmin &&
         h('button', { class: 'btn btn-danger', type: 'button', onClick: () => removeFile(section, file, onChange) }, 'Obriši'),
