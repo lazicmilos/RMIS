@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="sr-Latn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src https://api.github.com; script-src 'self'; style-src 'self'; img-src 'self'; object-src 'none'; base-uri 'self'">
+  <meta name="description" content="RMIS — vežbe, teorija i seminarski radovi.">
+  <title>RMIS</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
+  <script type="module" src="assets/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#">RMIS</a>
+      <nav id="nav" class="nav" aria-label="Sekcije">
+        <a href="#vezbe">Vežbe</a>
+        <a href="#teorija">Teorija</a>
+        <a href="#seminarski">Seminarski radovi</a>
+      </nav>
+      <button id="admin-button" class="btn btn-ghost" type="button">Prijava</button>
+    </div>
+  </header>
+
+  <main id="app" class="container">
+    <noscript><p class="banner">Za prikaz sajta potreban je JavaScript.</p></noscript>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      RMIS · fajlovi se čuvaju u <a href="https://github.com/lazicmilos/RMIS" target="_blank" rel="noopener">GitHub repozitorijumu</a>
+    </div>
+  </footer>
+
+  <dialog id="login-dialog" class="dialog" aria-labelledby="login-title">
+    <form id="login-form">
+      <h2 id="login-title">Prijava za upload</h2>
+      <p>
+        Upload ide direktno u GitHub repozitorijum. Napravi
+        <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">fine-grained token</a>
+        sa pristupom samo repozitorijumu <strong>RMIS</strong> i dozvolom <strong>Contents: Read and write</strong>.
+      </p>
+      <label class="field">
+        <span>GitHub token</span>
+        <input name="token" type="password" autocomplete="off" required placeholder="github_pat_…">
+      </label>
+      <label class="checkbox">
+        <input name="remember" type="checkbox">
+        <span>Zapamti na ovom uređaju</span>
+      </label>
+      <p id="login-error" class="form-error" role="alert"></p>
+      <div class="dialog-actions">
+        <button id="login-cancel" class="btn btn-ghost" type="button">Otkaži</button>
+        <button class="btn btn-primary" type="submit">Prijavi se</button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>
