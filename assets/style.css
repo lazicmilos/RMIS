@@ -110,6 +110,17 @@ main { flex: 1; padding-top: 32px; padding-bottom: 48px; }
 .nav a:hover { color: var(--text); background: var(--surface-2); }
 .nav a[aria-current] { color: var(--accent); background: var(--surface-2); }
 
+.header-actions { display: flex; align-items: center; gap: 8px; }
+
+.icon-link {
+  display: inline-flex;
+  padding: 7px;
+  border-radius: 10px;
+  color: var(--muted);
+}
+
+.icon-link:hover { color: var(--text); background: var(--surface-2); }
+
 .site-footer {
   padding: 24px 0;
   border-top: 1px solid var(--border);
@@ -400,7 +411,7 @@ main { flex: 1; padding-top: 32px; padding-bottom: 48px; }
 @media (max-width: 640px) {
   .header-inner { gap: 8px 16px; padding-top: 10px; padding-bottom: 10px; }
   .nav { order: 3; flex-basis: 100%; overflow-x: auto; }
-  #admin-button { margin-left: auto; }
+  .header-actions { margin-left: auto; }
   .file { flex-wrap: wrap; }
   .file-actions { width: 100%; padding-left: 62px; }
   .preview { width: 100%; height: 100dvh; border: 0; border-radius: 0; }
